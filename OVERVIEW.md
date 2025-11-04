@@ -1,97 +1,86 @@
 # Claude Builder Club Workshop
 
-Hey! This repo has everything you need to build AI-powered apps with Claude Code.
+Workshop materials for building AI-powered applications with Claude Code.
 
-## What's In Here
+## Contents
 
-1. **`workshop-projects/`** - Project ideas organized by difficulty
-   - Quick projects (5-30 min, no setup)
+1. **`workshop-projects/`** - Project briefs by difficulty
+   - Quick projects (5-30 min, zero setup)
    - Full-stack projects (1-4 hours)
    - 100+ copy-paste prompts
 
-2. **`create-builder-club-project/`** - NPM tool that sets everything up for you
+2. **`create-builder-club-project/`** - CLI tool for project scaffolding
 
 ## Getting Started
 
-### Option 1: Use the CLI (Recommended)
+### Option 1: CLI Tool
 
 ```bash
 npx builder-club
 ```
 
-This will:
-- Check if you have the right tools installed
-- Let you pick a project
-- Scaffold everything for you
-- Copy the project brief and initial prompt
-- Get you ready to build
+Checks tools, guides project selection, scaffolds Next.js structure, copies brief and initial prompt, creates environment templates, initializes git.
 
-### Option 2: Browse Projects Manually
+### Option 2: Browse Projects
 
-Check out `workshop-projects/` to see all the project ideas. Each has:
-- Clear mission brief
-- Initial Claude Code prompt (copy-paste ready)
-- Step-by-step guide
-- Extension ideas
+Navigate to `workshop-projects/` for all project briefs. Each includes mission brief, initial Claude Code prompt, step-by-step guide, extension ideas.
 
-Start with **[Quick Projects](workshop-projects/quick/QUICK-PROMPTS.md)** if you want something fast with zero setup.
+Quick projects with zero setup: **[QUICK-PROMPTS.md](workshop-projects/quick/QUICK-PROMPTS.md)**
 
-## What You'll Need
+## Prerequisites
 
-Before the workshop, make sure you have:
+Required:
+- Node.js 18+ (https://nodejs.org)
+- Bun (https://bun.sh)
+- Git (https://git-scm.com)
+- API key - OpenAI or Anthropic
 
-- **Node.js 18+** (https://nodejs.org)
-- **Bun** (faster than npm): `curl -fsSL https://bun.sh/install | bash`
-- **Git** (https://git-scm.com)
-- **API key** - OpenAI (https://platform.openai.com) or Anthropic
-
-Optional but helpful:
-- GitHub CLI (https://cli.github.com) for pushing code
-- Vercel CLI (`npm install -g vercel`) for deploying
-- Neon account (https://neon.tech) if your project needs a database
+Optional:
+- GitHub CLI (https://cli.github.com)
+- Vercel CLI (`npm install -g vercel`)
+- Neon account (https://neon.tech) for database projects
 
 ## Project Types
 
-### ⚡ Quick Projects (5-30 min)
-No API keys, no database, just build:
-- Pomodoro timer, calculators, games
-- Pokemon lookup, trivia quiz
-- Color generators, typing tests
-- [See all 100 prompts →](workshop-projects/quick/QUICK-PROMPTS.md)
+### Quick Projects (5-30 min)
+Zero API keys, zero database, zero setup.
+- Client-side apps: timers, calculators, games
+- Public APIs: Pokemon, trivia, weather
+- Browser APIs: voice notes, image filters
+- [100 prompts →](workshop-projects/quick/QUICK-PROMPTS.md)
 
-### 🟢 Easy (1-2 hours)
-Single feature, minimal complexity:
+### Easy (1-2 hours)
+Single feature, minimal database.
 - Study guide generator
-- Resume roaster
+- Resume feedback tool
 - Meme generator
-- Date idea generator
+- Date planner
 
-### 🟡 Medium (2-4 hours)
-Multiple features, uses database:
+### Medium (2-4 hours)
+Multiple features, database required.
 - Scholarship finder
 - GitHub portfolio builder
 
-### 🔴 Hard (4+ hours)
-Advanced features, good for portfolio:
-- Smart study buddy (RAG with documents)
+### Hard (4+ hours)
+Advanced features, portfolio quality.
+- Smart study buddy (RAG)
 - Research paper assistant
 
 ## Tech Stack
 
-All full-stack projects use:
+Full-stack projects:
+- Next.js 15 (App Router, `src/` directory)
+- Vercel AI SDK 5
+- TypeScript
+- Tailwind CSS
+- Drizzle ORM + Neon (database)
+- Vercel Blob (file storage)
 
-- **Next.js 15** (App Router with `src/` directory)
-- **Vercel AI SDK 5** for LLM stuff
-- **TypeScript**
-- **Tailwind CSS**
-- **Drizzle ORM + Neon** (for database projects)
-- **Vercel Blob** (for file uploads)
+Python projects: **uv** for package management
 
-Python projects use **uv** for package management.
+### File Structure
 
-### Project Structure
-
-Everything follows this pattern:
+Standard pattern:
 
 ```
 src/
@@ -99,61 +88,67 @@ src/
 │   ├── page.tsx
 │   ├── dashboard/
 │   │   ├── page.tsx
-│   │   ├── actions.ts          # Server actions here
-│   │   └── components/          # Components used by this page
+│   │   ├── actions.ts              # Server actions
+│   │   └── components/              # Page-specific components
 │   │       └── chart.tsx
 │   └── api/
 │       └── route.ts
-├── components/                   # Shared components
+├── components/                      # Shared components
 │   └── ui/
 └── lib/
-    ├── db/                      # Database stuff
+    ├── db/                          # Database
     └── utils.ts
 ```
 
-Keep things close to where they're used. If a component is only used on one page, put it in that page's `components/` folder.
+Colocate files with their usage. Page-specific components go in that page's folder.
 
 ## Workshop Formats
 
-### Quick Session (90 min)
-1. Everyone picks the same EASY project
-2. Build it together
+### Quick (90 min)
+1. Same EASY project for all
+2. Build together
 3. Deploy to Vercel
-4. Done!
 
 ### Self-Paced (2-3 hours)
-1. Pick any project you want
-2. Build at your own pace
-3. Show what you made at the end
+1. Choose any project
+2. Build independently
+3. Show results
 
 ### Hackathon (4+ hours)
-1. Team up
-2. Pick a MEDIUM or HARD project
-3. Build something cool
-4. Present it
+1. Teams
+2. MEDIUM or HARD projects
+3. Present work
 
 ## Common Issues
 
-**"Module not found"**
-→ Run `bun install`
+**Module not found**
+→ `bun install`
 
-**"API key error"**
-→ Check your `.env.local` file has the right keys
+**API key error**
+→ Check `.env.local`
 
-**"Port 3000 already in use"**
-→ Kill the other process or use a different port
+**Port 3000 in use**
+→ Kill process or change port
 
-**Next.js 15 vs 16**
-→ Use Next.js 15 for these projects (it's what everything is tested on)
+**Next.js version**
+→ Use Next.js 15 (tested), not 16
 
-## Tips
+## Best Practices
 
-- Start with a Quick Project if it's your first time
-- Read the project brief before asking Claude Code to build
-- Use Context7 or web search to get Vercel AI SDK 5 docs
-- Deploy your project even if it's not perfect
-- Add it to your GitHub for your portfolio
+- Start with Quick Projects for familiarity
+- Read project brief before building
+- Use Context7 or web for Vercel AI SDK 5 documentation
+- Deploy even if incomplete
+- Add to GitHub portfolio
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for adding new projects to the CLI tool.
+
+## Support
+
+Reference project briefs for detailed instructions. Questions during workshop: ask instructor.
 
 ---
 
-Questions? Ask during the workshop or check the project briefs for detailed help.
+**Claude Builder Club Workshop Materials**
