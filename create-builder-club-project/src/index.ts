@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 
-import { select, input, confirm } from '@inquirer/prompts';
+import { select, input, confirm, search } from '@inquirer/prompts';
 import chalk from 'chalk';
 import clipboard from 'clipboardy';
+import { execa } from 'execa';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { projects, getProjectsByDifficulty, getProjectById, type Project } from './projects.js';
-import { checkAllTools, printMissingTools } from './utils/check-tools.js';
+import { checkAllTools, printMissingTools, checkTool } from './utils/check-tools.js';
+import { loadQuickPrompts, searchPrompts, type QuickPrompt } from './quick-prompts.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,6 +24,20 @@ async function main() {
 
   console.log(chalk.gray('Welcome to the Claude Builder Club project scaffolder!\n'));
   console.log(chalk.gray('This tool will help you pick a project and get started.\n'));
+
+  // Ask what they want to do
+  const action = await select({
+    message: 'What would you like to do?',
+    choices: [
+      { name: 'Full Project (with setup guide)', value: 'full', description: 'Complete project with mission brief and step-by-step instructions' },
+      { name: 'Quick Prompt (100+ ideas)', value: 'quick', description: 'Browse and search quick prompts to start building immediately' },
+    ],
+  });
+
+  if (action === 'quick') {
+    await handleQuickPrompt();
+    return;
+  }
 
   // Check for tools
   const toolStatuses = await checkAllTools();
@@ -247,6 +263,77 @@ async function showInstructions(
 function hasDbSetup(): boolean {
   // Could check for DATABASE_URL in env, but for now just return false
   return false;
+}
+
+async function handleQuickPrompt() {
+  console.log(chalk.cyan('\nLoading 100+ quick prompts...\n'));
+
+  const prompts = await loadQuickPrompts();
+
+  // Use search with dynamic filtering
+  const selectedPromptId = await search({
+    message: 'Search for a prompt (type to filter):',
+    source: async (input) => {
+      const filtered = input ? searchPrompts(prompts, input) : prompts;
+
+      return filtered.map(p => ({
+        name: `${p.title}${p.accountsNeeded ? ' [Requires Account]' : ''}`,
+        value: p.id,
+        description: `${p.category} - ${p.prompt.slice(0, 80)}...`,
+      }));
+    },
+  });
+
+  const selectedPrompt = prompts.find(p => p.id === selectedPromptId);
+
+  if (!selectedPrompt) {
+    console.log(chalk.red('\nPrompt not found.'));
+    return;
+  }
+
+  console.log(chalk.cyan('\n╔════════════════════════════════════════════════════════╗'));
+  console.log(chalk.cyan(`║ ${chalk.bold(selectedPrompt.title)}${' '.repeat(Math.max(0, 54 - selectedPrompt.title.length))}║`));
+  console.log(chalk.cyan('╚════════════════════════════════════════════════════════╝\n'));
+
+  console.log(chalk.white(selectedPrompt.prompt));
+  console.log();
+
+  // Copy to clipboard
+  try {
+    await clipboard.write(selectedPrompt.prompt);
+    console.log(chalk.green('Copied to clipboard!\n'));
+  } catch {
+    console.log(chalk.yellow('Could not copy to clipboard.\n'));
+  }
+
+  // Check if claude CLI is available
+  const claudeStatus = await checkTool('claude', 'Claude CLI', false);
+
+  if (claudeStatus.installed) {
+    const runClaude = await confirm({
+      message: 'Run this prompt with Claude Code CLI?',
+      default: true,
+    });
+
+    if (runClaude) {
+      console.log(chalk.cyan('\nStarting Claude Code...\n'));
+
+      try {
+        await execa('claude', [selectedPrompt.prompt], {
+          stdio: 'inherit',
+        });
+      } catch (error) {
+        console.log(chalk.red('\nFailed to run Claude CLI.'));
+        console.log(chalk.gray('You can paste the prompt manually into Claude Code.\n'));
+      }
+    } else {
+      console.log(chalk.gray('\nPrompt copied to clipboard - paste it into Claude Code!\n'));
+    }
+  } else {
+    console.log(chalk.gray('Prompt copied to clipboard - paste it into Claude Code!\n'));
+    console.log(chalk.yellow('Tip: Install Claude CLI for one-click execution'));
+    console.log(chalk.gray('     npm install -g @anthropic-ai/claude-code\n'));
+  }
 }
 
 main().catch(console.error);
