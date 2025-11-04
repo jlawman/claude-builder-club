@@ -306,193 +306,27 @@ Each project brief should include:
 
 ## Free Tier API Resources
 
-Here are some great free APIs to use during the workshop:
+Here are some great free APIs to use:
 
 ### AI/LLM
-- **OpenAI** - Free trial credits ($5-18 depending on promotion)
-- **Anthropic** - Free trial credits ($5)
-- **Google AI** - Gemini models with generous free tier (15 RPM for Flash models)
-- Together AI - Free credits for open-source models
+- OpenAI (free trial credits)
+- Anthropic (free trial credits)
+- Together AI (free credits)
 
 ### Data & Content
-- **NewsAPI** - 100 requests/day free
-- **OpenWeather** - 1000 calls/day free
-- **Spotify API** - Free with account
-- **GitHub API** - 60 requests/hour unauthenticated, 5000 with token
-- **Semantic Scholar** - Free academic paper search
-- **arXiv API** - Free access to research papers
+- NewsAPI (100 requests/day free)
+- OpenWeather (1000 calls/day free)
+- Spotify API (free with account)
+- GitHub API (60 requests/hour unauthenticated)
 
 ### Communication
-- **Resend** - 100 emails/day free (3000/month)
-- **Twilio** - Trial credits for SMS
-
-### Storage & Infrastructure
-- **Vercel** - Hobby plan (generous free tier for hosting)
-- **Neon** - 0.5 GB storage free, 1 compute hour/month
-- **Vercel Blob** - Free tier available
-- **Upstash Redis** - 10,000 commands/day free
-- **Cloudflare** - Free CDN, DDoS protection, email routing
+- Resend (100 emails/day free)
+- Twilio (trial credits)
 
 ### Utilities
-- **Unsplash** - 50 requests/hour (5000/month)
-- **Google Places API** - Free tier available
-- **ExchangeRate-API** - 1500 requests/month free
-
-### Monitoring (for post-workshop)
-- **Sentry** - 5000 errors/month free
-- **Langfuse** - Free tier for LLM tracing
-- **Vercel Analytics** - Free with Vercel hosting
-
----
-
-## Beyond the Workshop: Recommended Production Stack
-
-Once you've built your workshop project and want to take it to production or build more advanced apps, here are our recommended tools and services:
-
-### 🚀 Infrastructure & Deployment
-
-**Hosting & Deployment**
-- **Vercel** - Primary choice for Next.js apps (free tier is generous)
-- **GCP (Google Cloud Platform)** - When you need more than Vercel offers (VMs, Kubernetes, Cloud Functions)
-- **Cloudflare Pages** - Alternative static/edge hosting
-
-**Domain & DNS**
-- **Cloudflare** - Buy and manage domain names (best pricing, great DDoS protection)
-- **Cloudflare Email Routing** - Free email forwarding for your domain (e.g., hello@yourdomain.com → your@gmail.com)
-
-### 🗄️ Storage & Databases
-
-**File Storage**
-- **Vercel Blob** - Simple file uploads (great for public files, images)
-- **Cloudflare R2** - S3-compatible private storage (no egress fees, perfect for user uploads, backups)
-
-**Databases**
-- **Neon** - PostgreSQL (already in our stack, great free tier)
-- **Drizzle ORM** - Type-safe database queries (already in our stack)
-
-**Caching & Real-time**
-- **Upstash Redis** - Serverless Redis for caching, rate limiting, sessions (generous free tier)
-- **Upstash Kafka** - For event streaming if you need it
-
-### 📧 Communication
-
-**Email**
-- **Resend** - Modern email API (100 emails/day free, perfect for transactional emails)
-- Use for: Welcome emails, password resets, notifications, newsletters
-
-### 🤖 AI Models & LLMs
-
-**For Prototyping & Quick Ideas** (Fast + Cheap)
-- **Claude Haiku 4.5** (`claude-haiku-4-5`) - Fast, cheap, great for simple tasks
-- **Gemini Flash Lite** (`gemini-flash-lite`) - Google's fastest model
-
-**For Production & Advanced Features** (Powerful)
-- **GPT-5** (`gpt-5`) - Most capable for complex reasoning
-- **Gemini 2.5 Pro** (`gemini-2-5-pro`) - Google's most powerful model
-- **Claude Sonnet 4.5** (`claude-sonnet-4-5`) - Best for coding and long context
-
-**Provider Recommendations**
-- Use **Anthropic API** for Claude models (great for coding assistants)
-- Use **Google AI API** for Gemini models (generous free tier)
-- Mix and match based on task complexity and budget
-
-### 📊 Monitoring & Observability
-
-**Error Tracking**
-- **Sentry.io** - Catch and debug errors in production (free tier available)
-- Get alerts when users hit errors
-- See stack traces and user context
-
-**LLM Tracing & Analytics**
-- **Langfuse** - Track LLM calls, costs, latency, and quality
-- Essential for debugging AI features
-- Monitor token usage and costs
-- A/B test different prompts
-
-**Application Monitoring**
-- **Vercel Analytics** - Built-in if using Vercel
-- **Google Analytics** - Free, comprehensive
-
-### 🔐 Authentication & Security
-
-**Auth** (from workshop stack)
-- **Clerk** - Easy user authentication
-
-**Security**
-- **Cloudflare** - DDoS protection, WAF, rate limiting (free tier)
-- Enable on your domain after deployment
-
-### 💰 Cost Optimization Tips
-
-1. **Start with free tiers** - Most services have generous free tiers
-2. **Use Haiku/Flash for prototypes** - Switch to Pro models only when needed
-3. **Cache aggressively** - Use Upstash Redis to cache API responses
-4. **Cloudflare R2 over S3** - No egress fees saves money
-5. **Monitor with Langfuse** - Track LLM costs before they get expensive
-
-### 🏗️ Recommended Architecture for Production
-
-```
-Frontend (Next.js 15)
-├── Hosting: Vercel
-├── Domain: Cloudflare
-├── CDN: Cloudflare (auto)
-└── Analytics: Vercel Analytics
-
-Backend
-├── Database: Neon PostgreSQL + Drizzle ORM
-├── Cache: Upstash Redis
-├── File Storage: Cloudflare R2 (private) + Vercel Blob (public)
-├── Email: Resend
-└── API: Next.js API Routes + Server Actions
-
-AI/LLM
-├── SDK: Vercel AI SDK 5
-├── Models: Claude Haiku (prototype) → GPT-5 (production)
-├── Tracing: Langfuse
-└── Fallbacks: Multiple providers for reliability
-
-Monitoring
-├── Errors: Sentry
-├── LLM: Langfuse
-└── Uptime: Vercel
-
-Deployment
-├── Primary: Vercel (automatic)
-└── Alternative: GCP Cloud Run (for custom needs)
-```
-
-### 📚 Migration Path
-
-**Workshop → MVP → Production**
-
-1. **Workshop** (Free Tier)
-   - Vercel hosting
-   - Neon database
-   - Vercel Blob
-   - No monitoring
-
-2. **MVP** (Still mostly free)
-   - Add Sentry (errors)
-   - Add Resend (emails)
-   - Add custom domain (Cloudflare)
-   - Add Langfuse (LLM tracking)
-
-3. **Production** (Paid as you scale)
-   - Upgrade Neon plan
-   - Add Upstash Redis (caching)
-   - Switch to Cloudflare R2 (private files)
-   - Use production LLM models
-   - Add monitoring & alerting
-
-### 🎓 Learning Resources
-
-- **Vercel AI SDK 5**: https://sdk.vercel.ai/docs
-- **Drizzle ORM**: https://orm.drizzle.team
-- **Langfuse**: https://langfuse.com/docs
-- **Cloudflare R2**: https://developers.cloudflare.com/r2
-- **Upstash Redis**: https://upstash.com/docs/redis
-- **Sentry**: https://docs.sentry.io
+- Unsplash (50 requests/hour)
+- Google Places API (free tier)
+- ExchangeRate-API (1500 requests/month)
 
 ---
 

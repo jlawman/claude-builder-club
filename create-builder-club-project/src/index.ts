@@ -29,11 +29,11 @@ async function main() {
   const toolStatuses = await checkAllTools();
   printMissingTools(toolStatuses);
 
-  const hasBun = toolStatuses.find(t => t.name === 'Bun')?.installed;
-  const hasGit = toolStatuses.find(t => t.name === 'Git')?.installed;
-  const hasGH = toolStatuses.find(t => t.name === 'GitHub CLI')?.installed;
-  const hasVercel = toolStatuses.find(t => t.name === 'Vercel CLI')?.installed;
-  const hasUV = toolStatuses.find(t => t.name === 'uv (Python)')?.installed;
+  const hasBun = toolStatuses.find(t => t.name === 'Bun')?.installed ?? false;
+  const hasGit = toolStatuses.find(t => t.name === 'Git')?.installed ?? false;
+  const hasGH = toolStatuses.find(t => t.name === 'GitHub CLI')?.installed ?? false;
+  const hasVercel = toolStatuses.find(t => t.name === 'Vercel CLI')?.installed ?? false;
+  const hasUV = toolStatuses.find(t => t.name === 'uv (Python)')?.installed ?? false;
 
   // Step 1: Choose category
   const category = await select({
