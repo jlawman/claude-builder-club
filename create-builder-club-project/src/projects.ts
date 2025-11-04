@@ -79,9 +79,41 @@ export const projects: Project[] = [
     hasDatabase: true,
     hasPython: false,
   },
+  {
+    id: 'github-portfolio',
+    name: 'GitHub Portfolio Builder',
+    description: 'Auto-generate portfolio site from your repos',
+    difficulty: 'medium',
+    category: 'career',
+    timeEstimate: '2-4 hours',
+    briefPath: './workshop-projects/medium/github-portfolio.md',
+    hasDatabase: true,
+    hasPython: false,
+  },
 
   // HARD PROJECTS
-  // Add more as they're created
+  {
+    id: 'research-paper-assistant',
+    name: 'Research Paper Assistant',
+    description: 'Search, summarize, and organize academic papers',
+    difficulty: 'hard',
+    category: 'academic',
+    timeEstimate: '4+ hours',
+    briefPath: './workshop-projects/hard/research-paper-assistant.md',
+    hasDatabase: true,
+    hasPython: false,
+  },
+  {
+    id: 'smart-study-buddy',
+    name: 'Smart Study Buddy',
+    description: 'AI-powered study companion with document chat',
+    difficulty: 'hard',
+    category: 'academic',
+    timeEstimate: '4+ hours',
+    briefPath: './workshop-projects/hard/smart-study-buddy.md',
+    hasDatabase: true,
+    hasPython: false,
+  },
 ];
 
 export function getProjectsByCategory(category: string): Project[] {

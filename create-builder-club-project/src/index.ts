@@ -2,14 +2,12 @@
 
 import { select, input, confirm } from '@inquirer/prompts';
 import chalk from 'chalk';
-import ora from 'ora';
 import clipboard from 'clipboardy';
-import { execa } from 'execa';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { projects, categories, getProjectsByCategory, getProjectById, type Project } from './projects.js';
+import { projects, getProjectsByDifficulty, getProjectById, type Project } from './projects.js';
 import { checkAllTools, printMissingTools } from './utils/check-tools.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,12 +16,12 @@ const __dirname = path.dirname(__filename);
 async function main() {
   console.log(chalk.bold.cyan('\n╔═══════════════════════════════════════════════════════╗'));
   console.log(chalk.bold.cyan('║                                                       ║'));
-  console.log(chalk.bold.cyan('║         🎓 Claude Builder Club - Oxford 🎓           ║'));
+  console.log(chalk.bold.cyan('║          Claude Builder Club - Oxford                ║'));
   console.log(chalk.bold.cyan('║                                                       ║'));
   console.log(chalk.bold.cyan('╚═══════════════════════════════════════════════════════╝\n'));
 
   console.log(chalk.gray('Welcome to the Claude Builder Club project scaffolder!\n'));
-  console.log(chalk.gray('This tool will help you create awesome AI-powered projects.\n'));
+  console.log(chalk.gray('This tool will help you pick a project and get started.\n'));
 
   // Check for tools
   const toolStatuses = await checkAllTools();
@@ -35,55 +33,42 @@ async function main() {
   const hasVercel = toolStatuses.find(t => t.name === 'Vercel CLI')?.installed ?? false;
   const hasUV = toolStatuses.find(t => t.name === 'uv (Python)')?.installed ?? false;
 
-  // Step 1: Choose category
-  const category = await select({
-    message: 'What type of project would you like to build?',
-    choices: categories.map(cat => ({
-      name: cat.name,
-      value: cat.value,
-      description: `Projects related to ${cat.name.replace(/^[^\s]+\s/, '')}`,
-    })),
-  });
-
-  const categoryProjects = getProjectsByCategory(category);
-
-  if (categoryProjects.length === 0) {
-    console.log(chalk.red('\n❌ No projects available in this category yet. Check back soon!'));
-    process.exit(0);
-  }
-
-  // Step 2: Choose difficulty
-  const availableDifficulties = [...new Set(categoryProjects.map(p => p.difficulty))];
-
+  // Step 1: Choose difficulty
   const difficultyMap = {
-    easy: { name: '🟢 Easy (1-2 hours)', emoji: '🟢' },
-    medium: { name: '🟡 Medium (2-4 hours)', emoji: '🟡' },
-    hard: { name: '🔴 Hard (4+ hours)', emoji: '🔴' },
+    easy: { name: 'Easy', description: 'Perfect for learning the stack' },
+    medium: { name: 'Medium', description: 'Multiple features with database' },
+    hard: { name: 'Hard', description: 'Complex, portfolio-worthy projects' },
   };
 
   const difficulty = await select({
     message: 'Choose your difficulty level:',
-    choices: availableDifficulties.map(d => ({
-      name: difficultyMap[d].name,
-      value: d,
-    })),
-  });
+    choices: [
+      { name: difficultyMap.easy.name, value: 'easy', description: difficultyMap.easy.description },
+      { name: difficultyMap.medium.name, value: 'medium', description: difficultyMap.medium.description },
+      { name: difficultyMap.hard.name, value: 'hard', description: difficultyMap.hard.description },
+    ],
+  }) as 'easy' | 'medium' | 'hard';
 
-  // Step 3: Choose specific project
-  const filteredProjects = categoryProjects.filter(p => p.difficulty === difficulty);
+  // Step 2: Choose specific project (all projects for this difficulty)
+  const difficultyProjects = getProjectsByDifficulty(difficulty);
+
+  if (difficultyProjects.length === 0) {
+    console.log(chalk.red('\n❌ No projects available at this difficulty yet. Check back soon!'));
+    process.exit(0);
+  }
 
   const projectId = await select({
     message: 'Select your project:',
-    choices: filteredProjects.map(p => ({
-      name: p.name,
+    choices: difficultyProjects.map(p => ({
+      name: `${p.name} - ${p.description}`,
       value: p.id,
-      description: p.description,
+      description: `Category: ${p.category}`,
     })),
   });
 
   const project = getProjectById(projectId)!;
 
-  // Step 4: Project name
+  // Step 3: Project name
   const projectName = await input({
     message: 'What would you like to name your project?',
     default: project.id,
@@ -96,19 +81,19 @@ async function main() {
     },
   });
 
-  // Step 5: Confirm
-  console.log(chalk.cyan('\n📋 Project Summary:'));
+  // Step 4: Show summary
+  console.log(chalk.cyan('\nProject Summary:'));
   console.log(chalk.gray('─'.repeat(50)));
   console.log(chalk.white('  Project:'), chalk.bold(project.name));
-  console.log(chalk.white('  Difficulty:'), difficultyMap[project.difficulty].emoji, project.difficulty.toUpperCase());
-  console.log(chalk.white('  Time:'), project.timeEstimate);
+  console.log(chalk.white('  Category:'), project.category);
+  console.log(chalk.white('  Difficulty:'), project.difficulty.toUpperCase());
   console.log(chalk.white('  Folder:'), `./${projectName}`);
   console.log(chalk.white('  Database:'), project.hasDatabase ? chalk.green('Yes (Neon + Drizzle)') : chalk.gray('No'));
   console.log(chalk.white('  Python:'), project.hasPython ? chalk.green('Yes (uv)') : chalk.gray('No'));
   console.log(chalk.gray('─'.repeat(50) + '\n'));
 
   const confirmed = await confirm({
-    message: 'Ready to create your project?',
+    message: 'Ready to get your instructions?',
     default: true,
   });
 
@@ -117,8 +102,8 @@ async function main() {
     process.exit(0);
   }
 
-  // Create the project
-  await createProject(project, projectName, {
+  // Show instructions
+  await showInstructions(project, projectName, {
     hasBun,
     hasGit,
     hasGH,
@@ -127,196 +112,138 @@ async function main() {
   });
 }
 
-async function createProject(
+async function showInstructions(
   project: Project,
   projectName: string,
   tools: { hasBun: boolean; hasGit: boolean; hasGH: boolean; hasVercel: boolean; hasUV: boolean }
 ) {
-  const spinner = ora('Creating your project...').start();
+  // Read the mission brief and extract initial prompt
+  // __dirname is dist/, so go up one level to package root
+  const briefPath = path.resolve(__dirname, '..', project.briefPath);
+  const brief = await fs.readFile(briefPath, 'utf-8');
 
-  try {
-    // Step 1: Create Next.js app
-    spinner.text = 'Creating Next.js 15 app...';
+  const promptMatch = brief.match(/## Initial Prompt for Claude Code\s+```\s+([\s\S]*?)\s+```/);
+  let initialPrompt = '';
 
-    const packageManager = tools.hasBun ? 'bun' : 'npm';
-    const createCommand = tools.hasBun ? 'bunx' : 'npx';
-
-    await execa(createCommand, [
-      'create-next-app@latest',
-      projectName,
-      '--typescript',
-      '--tailwind',
-      '--app',
-      '--src-dir',
-      ...(tools.hasBun ? ['--use-bun'] : []),
-      '--no-git', // We'll init git ourselves
-    ], {
-      stdio: 'pipe',
-    });
-
-    spinner.succeed('Created Next.js 15 app');
-
-    // Step 2: Check Next.js version and downgrade if needed
-    spinner.start('Checking Next.js version...');
-    const packageJsonPath = path.join(process.cwd(), projectName, 'package.json');
-    const packageJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf-8'));
-
-    if (packageJson.dependencies.next.startsWith('^16') || packageJson.dependencies.next.startsWith('16')) {
-      spinner.text = 'Downgrading to Next.js 15...';
-      packageJson.dependencies.next = '^15.0.0';
-      await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
-
-      await execa(packageManager, ['install'], {
-        cwd: path.join(process.cwd(), projectName),
-        stdio: 'pipe',
-      });
-
-      spinner.succeed('Using Next.js 15');
-    } else {
-      spinner.succeed('Next.js 15 confirmed');
+  if (promptMatch) {
+    initialPrompt = promptMatch[1].trim();
+    try {
+      await clipboard.write(initialPrompt);
+    } catch {
+      // Clipboard failed, no big deal
     }
-
-    // Step 3: Install additional dependencies
-    spinner.start('Installing AI SDK and dependencies...');
-
-    const deps = ['ai', '@ai-sdk/openai', '@ai-sdk/anthropic'];
-    if (project.hasDatabase) {
-      deps.push('drizzle-orm', 'postgres', '@vercel/blob');
-    }
-
-    await execa(packageManager, ['add', ...deps], {
-      cwd: path.join(process.cwd(), projectName),
-      stdio: 'pipe',
-    });
-
-    if (project.hasDatabase) {
-      await execa(packageManager, ['add', '-D', 'drizzle-kit'], {
-        cwd: path.join(process.cwd(), projectName),
-        stdio: 'pipe',
-      });
-    }
-
-    spinner.succeed('Installed dependencies');
-
-    // Step 4: Copy the mission brief
-    spinner.start('Adding mission brief...');
-
-    const briefPath = path.resolve(__dirname, project.briefPath);
-    const brief = await fs.readFile(briefPath, 'utf-8');
-
-    await fs.writeFile(
-      path.join(process.cwd(), projectName, 'MISSION.md'),
-      brief
-    );
-
-    spinner.succeed('Added MISSION.md with project brief');
-
-    // Step 5: Create .env.example
-    spinner.start('Creating environment template...');
-
-    let envContent = '# LLM API Keys (choose one)\nOPENAI_API_KEY=sk-...\n# ANTHROPIC_API_KEY=sk-ant-...\n';
-
-    if (project.hasDatabase) {
-      envContent += '\n# Neon Database\nDATABASE_URL=postgresql://user:pass@host/db\n';
-      envContent += '\n# Vercel Blob Storage\nBLOB_READ_WRITE_TOKEN=...\n';
-    }
-
-    await fs.writeFile(
-      path.join(process.cwd(), projectName, '.env.example'),
-      envContent
-    );
-
-    await fs.writeFile(
-      path.join(process.cwd(), projectName, '.env.local'),
-      envContent
-    );
-
-    spinner.succeed('Created .env files');
-
-    // Step 6: Extract initial prompt and copy to clipboard
-    spinner.start('Preparing Claude Code prompt...');
-
-    const promptMatch = brief.match(/## Initial Prompt for Claude Code\s+```\s+([\s\S]*?)\s+```/);
-    let initialPrompt = '';
-
-    if (promptMatch) {
-      initialPrompt = promptMatch[1].trim();
-      try {
-        await clipboard.write(initialPrompt);
-        spinner.succeed('Copied initial prompt to clipboard! ');
-      } catch {
-        spinner.warn('Could not copy to clipboard, but prompt is in MISSION.md');
-      }
-    } else {
-      spinner.warn('No initial prompt found in brief');
-    }
-
-    // Step 7: Initialize git
-    if (tools.hasGit) {
-      spinner.start('Initializing git repository...');
-      await execa('git', ['init'], {
-        cwd: path.join(process.cwd(), projectName),
-        stdio: 'pipe',
-      });
-      await execa('git', ['add', '.'], {
-        cwd: path.join(process.cwd(), projectName),
-        stdio: 'pipe',
-      });
-      await execa('git', ['commit', '-m', 'Initial commit from Builder Club'], {
-        cwd: path.join(process.cwd(), projectName),
-        stdio: 'pipe',
-      });
-      spinner.succeed('Initialized git repository');
-    }
-
-    // Success!
-    console.log(chalk.green.bold('\n✨ Project created successfully!\n'));
-
-    // Show next steps
-    console.log(chalk.cyan('📝 Next steps:\n'));
-    console.log(chalk.white(`  1. cd ${projectName}`));
-    console.log(chalk.white(`  2. Read the MISSION.md file for full project details`));
-    console.log(chalk.white(`  3. Add your API keys to .env.local`));
-
-    if (project.hasDatabase) {
-      console.log(chalk.white(`  4. Set up your Neon database:`));
-      console.log(chalk.gray(`     - Visit https://neon.tech and create a database`));
-      console.log(chalk.gray(`     - Add DATABASE_URL to .env.local`));
-      console.log(chalk.white(`  5. Run database migrations: ${packageManager} run db:push`));
-      console.log(chalk.white(`  6. Start building with Claude Code!`));
-    } else {
-      console.log(chalk.white(`  4. Start building with Claude Code!`));
-    }
-
-    if (initialPrompt) {
-      console.log(chalk.cyan('\n💡 Initial Prompt (copied to clipboard):'));
-      console.log(chalk.gray('─'.repeat(60)));
-      console.log(chalk.white(initialPrompt.slice(0, 200) + '...'));
-      console.log(chalk.gray('─'.repeat(60)));
-      console.log(chalk.gray('\nPaste this into Claude Code to get started!\n'));
-    }
-
-    // Tool recommendations
-    const missingTools = [];
-    if (!tools.hasGH) missingTools.push('GitHub CLI (gh)');
-    if (!tools.hasVercel) missingTools.push('Vercel CLI');
-    if (project.hasPython && !tools.hasUV) missingTools.push('uv (Python package manager)');
-
-    if (missingTools.length > 0) {
-      console.log(chalk.yellow('💡 Recommended tools to install:'));
-      missingTools.forEach(tool => {
-        console.log(chalk.gray(`  • ${tool}`));
-      });
-      console.log();
-    }
-
-    console.log(chalk.green.bold('Happy building! 🚀\n'));
-
-  } catch (error) {
-    spinner.fail('Failed to create project');
-    console.error(chalk.red('\n❌ Error:'), error);
-    process.exit(1);
   }
+
+  const packageManager = tools.hasBun ? 'bun' : 'npm';
+  const createCommand = tools.hasBun ? 'bunx' : 'npx';
+  const installCommand = tools.hasBun ? 'bun install' : 'npm install';
+  const addCommand = tools.hasBun ? 'bun add' : 'npm install';
+  const devCommand = tools.hasBun ? 'bun dev' : 'npm run dev';
+
+  console.log(chalk.green.bold('\nPerfect! Here are your instructions:\n'));
+
+  console.log(chalk.cyan('Step 1: Create your Next.js 15 project\n'));
+  console.log(chalk.white('Copy and run this command:\n'));
+
+  const createNextCommand = `${createCommand} create-next-app@latest ${projectName} --typescript --tailwind --app --src-dir${tools.hasBun ? ' --use-bun' : ''}`;
+  console.log(chalk.bgBlack.white(` ${createNextCommand} `));
+  console.log();
+
+  console.log(chalk.cyan('Step 2: Navigate to your project\n'));
+  console.log(chalk.bgBlack.white(` cd ${projectName} `));
+  console.log();
+
+  console.log(chalk.cyan('Step 3: Install AI SDK and dependencies\n'));
+  const deps = ['ai', '@ai-sdk/openai', '@ai-sdk/anthropic'];
+  if (project.hasDatabase) {
+    deps.push('drizzle-orm', 'postgres', '@vercel/blob');
+  }
+  console.log(chalk.bgBlack.white(` ${addCommand} ${deps.join(' ')} `));
+
+  if (project.hasDatabase) {
+    console.log(chalk.bgBlack.white(` ${addCommand} -D drizzle-kit `));
+  }
+  console.log();
+
+  console.log(chalk.cyan('Step 4: Set up environment variables\n'));
+  console.log(chalk.white('Create a .env.local file with:\n'));
+
+  let envContent = '# LLM API Keys (choose one)\nOPENAI_API_KEY=sk-...\n# ANTHROPIC_API_KEY=sk-ant-...';
+
+  if (project.hasDatabase) {
+    envContent += '\n\n# Neon Database\nDATABASE_URL=postgresql://user:pass@host/db';
+    envContent += '\n\n# Vercel Blob Storage\nBLOB_READ_WRITE_TOKEN=...';
+  }
+
+  console.log(chalk.gray(envContent));
+  console.log();
+
+  console.log(chalk.cyan('Step 5: Read your mission brief\n'));
+  console.log(chalk.white('View the full brief online:\n'));
+  console.log(chalk.blue(`https://github.com/your-repo/workshop-projects/blob/main/${project.difficulty}/${project.id}.md`));
+  console.log();
+  console.log(chalk.gray('(The brief includes detailed requirements, database schema, and more)\n'));
+
+  if (initialPrompt) {
+    console.log(chalk.cyan('Step 6: Start building with Claude Code\n'));
+    console.log(chalk.white('The initial prompt has been copied to your clipboard!'));
+    console.log(chalk.white('Paste it into Claude Code to get started.\n'));
+    console.log(chalk.gray('Preview of the prompt:'));
+    console.log(chalk.gray('─'.repeat(60)));
+    const preview = initialPrompt.slice(0, 200) + (initialPrompt.length > 200 ? '...' : '');
+    console.log(chalk.gray(preview));
+    console.log(chalk.gray('─'.repeat(60)));
+    console.log();
+  }
+
+  console.log(chalk.cyan('Step 7: Run your dev server\n'));
+  console.log(chalk.bgBlack.white(` ${devCommand} `));
+  console.log();
+
+  console.log(chalk.green('─'.repeat(60)));
+  console.log(chalk.green.bold('\nYou\'re all set! Follow these steps and start building.\n'));
+
+  // Quick reference commands
+  console.log(chalk.cyan('Quick Reference - Copy these commands:\n'));
+  console.log(chalk.gray(`# Create project`));
+  console.log(chalk.white(`${createNextCommand}\n`));
+  console.log(chalk.gray(`# Navigate and install`));
+  console.log(chalk.white(`cd ${projectName}`));
+  console.log(chalk.white(`${addCommand} ${deps.join(' ')}`));
+  if (project.hasDatabase) {
+    console.log(chalk.white(`${addCommand} -D drizzle-kit`));
+  }
+  console.log();
+  console.log(chalk.gray(`# Run dev server`));
+  console.log(chalk.white(`${devCommand}\n`));
+
+  // Additional recommendations
+  if (!tools.hasGit) {
+    console.log(chalk.yellow('Tip: Install Git to track your changes'));
+    console.log(chalk.gray('   https://git-scm.com/downloads\n'));
+  }
+
+  if (!tools.hasGH) {
+    console.log(chalk.yellow('Tip: Install GitHub CLI for easy repo management'));
+    console.log(chalk.gray('   https://cli.github.com\n'));
+  }
+
+  if (!tools.hasVercel) {
+    console.log(chalk.yellow('Tip: Install Vercel CLI to deploy when done'));
+    console.log(chalk.gray('   npm install -g vercel\n'));
+  }
+
+  if (project.hasDatabase && !hasDbSetup()) {
+    console.log(chalk.yellow('Remember: Sign up for a free Neon database'));
+    console.log(chalk.gray('   https://neon.tech\n'));
+  }
+
+  console.log(chalk.green.bold('Happy building!\n'));
+}
+
+function hasDbSetup(): boolean {
+  // Could check for DATABASE_URL in env, but for now just return false
+  return false;
 }
 
 main().catch(console.error);

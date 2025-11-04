@@ -1,6 +1,6 @@
 {
   "name": "builder-club",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Scaffold projects for Claude Builder Club workshops at Oxford",
   "type": "module",
   "bin": {
@@ -26,7 +26,6 @@
     "@inquirer/prompts": "^5.5.0",
     "chalk": "^5.3.0",
     "execa": "^9.4.0",
-    "ora": "^8.1.0",
     "clipboardy": "^4.0.0"
   },
   "devDependencies": {

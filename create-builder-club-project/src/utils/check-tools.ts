@@ -28,7 +28,7 @@ export async function checkTool(command: string, name: string, required: boolean
 }
 
 export async function checkAllTools(): Promise<ToolStatus[]> {
-  console.log(chalk.cyan('\n🔍 Checking for required tools...\n'));
+  console.log(chalk.cyan('\nChecking for required tools...\n'));
 
   const tools = [
     { command: 'node', name: 'Node.js', required: true },
@@ -46,12 +46,12 @@ export async function checkAllTools(): Promise<ToolStatus[]> {
     results.push(status);
 
     if (status.installed) {
-      console.log(chalk.green(`✓ ${status.name}`), chalk.gray(`(${status.version})`));
+      console.log(chalk.green(`[OK] ${status.name}`), chalk.gray(`(${status.version})`));
     } else {
       if (status.required) {
-        console.log(chalk.red(`✗ ${status.name}`), chalk.red('(REQUIRED)'));
+        console.log(chalk.red(`[MISSING] ${status.name}`), chalk.red('(REQUIRED)'));
       } else {
-        console.log(chalk.yellow(`⚠ ${status.name}`), chalk.gray('(optional)'));
+        console.log(chalk.yellow(`[NOT FOUND] ${status.name}`), chalk.gray('(optional)'));
       }
     }
   }
@@ -77,17 +77,17 @@ export function printMissingTools(tools: ToolStatus[]): void {
   const required = tools.filter(t => !t.installed && t.required);
 
   if (required.length > 0) {
-    console.log(chalk.red('\n❌ Missing required tools:'));
+    console.log(chalk.red('\nMissing required tools:'));
     required.forEach(tool => {
-      console.log(chalk.red(`  • ${tool.name}: ${getInstallInstructions(tool)}`));
+      console.log(chalk.red(`  - ${tool.name}: ${getInstallInstructions(tool)}`));
     });
     process.exit(1);
   }
 
   if (missing.length > 0) {
-    console.log(chalk.yellow('\n⚠️  Optional tools not found:'));
+    console.log(chalk.yellow('\nOptional tools not found:'));
     missing.forEach(tool => {
-      console.log(chalk.yellow(`  • ${tool.name}: ${getInstallInstructions(tool)}`));
+      console.log(chalk.yellow(`  - ${tool.name}: ${getInstallInstructions(tool)}`));
     });
     console.log(chalk.gray('\nThese are optional but recommended for deploying and managing your project.\n'));
   }
