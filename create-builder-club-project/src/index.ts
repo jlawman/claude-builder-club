@@ -122,6 +122,10 @@ async function showInstructions(
   const briefPath = path.resolve(__dirname, '..', project.briefPath);
   const brief = await fs.readFile(briefPath, 'utf-8');
 
+  // Save the brief to current directory
+  const localBriefPath = path.join(process.cwd(), `${projectName}-MISSION.md`);
+  await fs.writeFile(localBriefPath, brief);
+
   const promptMatch = brief.match(/## Initial Prompt for Claude Code\s+```\s+([\s\S]*?)\s+```/);
   let initialPrompt = '';
 
@@ -141,19 +145,24 @@ async function showInstructions(
   const devCommand = tools.hasBun ? 'bun dev' : 'npm run dev';
 
   console.log(chalk.green.bold('\nPerfect! Here are your instructions:\n'));
+  console.log(chalk.green(`Saved mission brief to: ${localBriefPath}\n`));
 
-  console.log(chalk.cyan('Step 1: Create your Next.js 15 project\n'));
+  console.log(chalk.cyan('Step 1: Read your mission brief\n'));
+  console.log(chalk.white(`Open the file: ${chalk.bold(path.basename(localBriefPath))}`));
+  console.log(chalk.gray('This contains full requirements, database schema, and detailed instructions.\n'));
+
+  console.log(chalk.cyan('Step 2: Create your Next.js 15 project\n'));
   console.log(chalk.white('Copy and run this command:\n'));
 
   const createNextCommand = `${createCommand} create-next-app@latest ${projectName} --typescript --tailwind --app --src-dir${tools.hasBun ? ' --use-bun' : ''}`;
   console.log(chalk.bgBlack.white(` ${createNextCommand} `));
   console.log();
 
-  console.log(chalk.cyan('Step 2: Navigate to your project\n'));
+  console.log(chalk.cyan('Step 3: Navigate to your project\n'));
   console.log(chalk.bgBlack.white(` cd ${projectName} `));
   console.log();
 
-  console.log(chalk.cyan('Step 3: Install AI SDK and dependencies\n'));
+  console.log(chalk.cyan('Step 4: Install AI SDK and dependencies\n'));
   const deps = ['ai', '@ai-sdk/openai', '@ai-sdk/anthropic'];
   if (project.hasDatabase) {
     deps.push('drizzle-orm', 'postgres', '@vercel/blob');
@@ -165,7 +174,7 @@ async function showInstructions(
   }
   console.log();
 
-  console.log(chalk.cyan('Step 4: Set up environment variables\n'));
+  console.log(chalk.cyan('Step 5: Set up environment variables\n'));
   console.log(chalk.white('Create a .env.local file with:\n'));
 
   let envContent = '# LLM API Keys (choose one)\nOPENAI_API_KEY=sk-...\n# ANTHROPIC_API_KEY=sk-ant-...';
@@ -177,12 +186,6 @@ async function showInstructions(
 
   console.log(chalk.gray(envContent));
   console.log();
-
-  console.log(chalk.cyan('Step 5: Read your mission brief\n'));
-  console.log(chalk.white('View the full brief online:\n'));
-  console.log(chalk.blue(`https://github.com/your-repo/workshop-projects/blob/main/${project.difficulty}/${project.id}.md`));
-  console.log();
-  console.log(chalk.gray('(The brief includes detailed requirements, database schema, and more)\n'));
 
   if (initialPrompt) {
     console.log(chalk.cyan('Step 6: Start building with Claude Code\n'));
