@@ -1,4 +1,4 @@
-# create-builder-club-project
+# builder-club
 
 🎓 **Claude Builder Club @ Oxford** - Official project scaffolding tool for workshop participants.
 
@@ -9,17 +9,17 @@ Quickly scaffold AI-powered web applications with Next.js 15, Vercel AI SDK 5, a
 No installation needed! Use `npx` to run directly:
 
 ```bash
-npx create-builder-club-project
+npx builder-club
 ```
 
 Or with Yarn/pnpm:
 
 ```bash
 # Yarn
-yarn create builder-club-project
+yarn dlx builder-club
 
 # pnpm
-pnpm create builder-club-project
+pnpm dlx builder-club
 ```
 
 ## What It Does
@@ -56,7 +56,7 @@ This CLI tool will:
 ## Example Flow
 
 ```bash
-$ npx create-builder-club-project
+$ npx builder-club
 
 🔍 Checking for required tools...
 ✓ Node.js (v20.10.0)
@@ -185,7 +185,7 @@ All projects use:
 2. Test locally:
    ```bash
    npm link
-   create-builder-club-project
+   builder-club
    ```
 
 3. Publish to NPM:
@@ -242,7 +242,7 @@ bun run build
 
 # Test locally
 npm link
-create-builder-club-project
+builder-club
 
 # Or run directly
 bun run start

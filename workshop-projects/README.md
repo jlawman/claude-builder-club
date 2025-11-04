@@ -55,7 +55,34 @@ src/
 
 ---
 
-## Projects by Category
+## ⚡ NEW: Quick Start Projects (Zero Setup!)
+
+**Want to build something NOW without any API keys or setup?**
+
+Check out **[Quick Start Projects](./quick/README.md)** - 40+ projects you can build in 5-30 minutes:
+- ✅ **No API keys** - Use public endpoints or pure client-side
+- ✅ **No databases** - localStorage or stateless
+- ✅ **No accounts** - Start building immediately
+- ✅ **Copy-paste prompts** - Ready to use with Claude Code
+
+**Popular Quick Projects:**
+- [Pomodoro Timer](./quick/web-apps/pomodoro-timer.md) - Focus timer with notifications
+- [Pokemon Lookup](./quick/web-apps/pokemon-lookup.md) - Search Pokemon using free API
+- [Color Palette Generator](./quick/web-apps/color-palette-generator.md) - Generate beautiful colors
+- [Voice Notes](./quick/browser-apis/voice-notes.md) - Speech-to-text notes
+- **[40 Copy-Paste Prompts](./quick/QUICK-PROMPTS.md)** - Just copy and build!
+
+Perfect for:
+- 🎓 Learning Claude Code quickly
+- 🚀 Portfolio fillers
+- 🎯 Testing new ideas
+- 🎮 Fun weekend projects
+
+---
+
+## Workshop Projects (Full Stack)
+
+These projects involve databases, APIs, and complete full-stack features. Great for learning production development patterns!
 
 ### 📚 Academic Life
 

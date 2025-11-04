@@ -1,10 +1,10 @@
 {
-  "name": "create-builder-club-project",
+  "name": "builder-club",
   "version": "0.1.0",
   "description": "Scaffold projects for Claude Builder Club workshops at Oxford",
   "type": "module",
   "bin": {
-    "create-builder-club-project": "./dist/index.js"
+    "builder-club": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",

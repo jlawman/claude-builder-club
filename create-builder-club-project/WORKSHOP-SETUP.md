@@ -73,7 +73,7 @@ You'll need at least one LLM API key:
 
 Run this command:
 ```bash
-npx create-builder-club-project
+npx builder-club
 ```
 
 Follow the prompts to:
@@ -177,7 +177,7 @@ your-project/
 
 Bun isn't installed. Either:
 - Install Bun: `curl -fsSL https://bun.sh/install | bash`
-- Use npx instead: `npx create-builder-club-project`
+- Use npx instead: `npx builder-club`
 
 ### "Module not found" errors
 

@@ -9,7 +9,7 @@ This repository contains:
 1. **`create-builder-club-project/`** - NPM package that scaffolds projects
 2. **`workshop-projects/`** - Collection of project briefs organized by difficulty
 
-## Package: create-builder-club-project
+## Package: builder-club
 
 An interactive CLI that:
 - ✅ Checks for required tools (Node, Bun, Git, GitHub CLI, Vercel CLI, uv)
@@ -26,7 +26,7 @@ An interactive CLI that:
 
 ```bash
 # Just run this!
-npx create-builder-club-project
+npx builder-club
 
 # Follow the interactive prompts
 # Get a fully scaffolded project ready to build
@@ -49,7 +49,7 @@ bun run build
 npm link
 
 # Run it
-create-builder-club-project
+builder-club
 
 # Or run directly from source
 bun run start
