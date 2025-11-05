@@ -24,10 +24,10 @@ All project briefs are in the `workshop-projects/` directory:
 
 ```
 workshop-projects/
-├── easy/          - 1-2 hour projects
-├── medium/        - 2-4 hour projects
-├── hard/          - 4+ hour projects
-└── quick/         - 5-30 minute projects (zero setup)
+├── easy/          - Simple projects for learning
+├── medium/        - Multi-feature projects
+├── hard/          - Advanced projects
+└── quick/         - Quick projects (zero setup)
 ```
 
 Each project brief includes:
@@ -73,17 +73,17 @@ All full-stack projects use:
 
 ## Project Difficulty Levels
 
-**Easy (1-2 hours)**
+**Easy**
 - Single main feature
 - Minimal or no database
 - Great for learning the stack
 
-**Medium (2-4 hours)**
+**Medium**
 - Multiple features
 - Database with 2-4 tables
 - Multiple integrations
 
-**Hard (4+ hours)**
+**Hard**
 - Complex feature set
 - Advanced patterns
 - Production-ready quality
@@ -97,8 +97,8 @@ All full-stack projects use:
 
 ## Workshop Formats
 
-**Quick (90 min)** - Everyone builds the same Easy project together
+**Quick** - Everyone builds the same Easy project together
 
-**Self-Paced (2-3 hours)** - Choose any project, build independently
+**Self-Paced** - Choose any project, build independently
 
-**Hackathon (4+ hours)** - Teams tackle Medium or Hard projects
+**Hackathon** - Teams tackle Medium or Hard projects

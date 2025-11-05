@@ -1,6 +1,6 @@
 # builder-club
 
-🎓 **Claude Builder Club @ Oxford** - Official project scaffolding tool for workshop participants.
+**Claude Builder Club @ Oxford** - Official project scaffolding tool for workshop participants.
 
 Quickly scaffold AI-powered web applications with Next.js 15, Vercel AI SDK 5, and best practices baked in.
 
@@ -26,32 +26,32 @@ pnpm dlx builder-club
 
 This CLI tool will:
 
-1. ✅ Check for required tools (Node.js, Bun, Git, GitHub CLI, Vercel CLI, uv)
-2. 🎯 Guide you through selecting a project (category, difficulty, specific project)
-3. 🚀 Scaffold a complete Next.js 15 app with:
+1. Check for required tools (Node.js, Bun, Git, GitHub CLI, Vercel CLI, uv)
+2. Guide you through selecting a project (category, difficulty, specific project)
+3. Scaffold a complete Next.js 15 app with:
    - `src/` directory structure
    - Vercel AI SDK 5 pre-installed
    - Database setup (if needed: Drizzle + Neon)
    - TypeScript and Tailwind CSS
-4. 📋 Copy the project brief to `MISSION.md`
-5. 💡 Copy the initial Claude Code prompt to your clipboard
-6. 🎁 Create `.env.example` with required API keys
+4. Copy the project brief to `MISSION.md`
+5. Copy the initial Claude Code prompt to your clipboard
+6. Create `.env.example` with required API keys
 
 ## Project Categories
 
-- 📚 **Academic Life** - Study guides, grade calculators, course reviews
-- 💼 **Career Development** - Resume tools, interview prep, portfolio builders
-- 🎯 **Campus Life** - Event finders, dining hall menus, textbook hunting
-- 💰 **Personal Finance** - Budget trackers, scholarship finders
-- 🎨 **Creative & Social** - Meme generators, playlist curators, date planners
-- 🏋️ **Health & Wellness** - Workout builders, meal planners, mood tracking
-- 🛠️ **Productivity** - Note organizers, calendar optimizers, email templates
+- **Academic Life** - Study guides, grade calculators, course reviews
+- **Career Development** - Resume tools, interview prep, portfolio builders
+- **Campus Life** - Event finders, dining hall menus, textbook hunting
+- **Personal Finance** - Budget trackers, scholarship finders
+- **Creative & Social** - Meme generators, playlist curators, date planners
+- **Health & Wellness** - Workout builders, meal planners, mood tracking
+- **Productivity** - Note organizers, calendar optimizers, email templates
 
 ## Difficulty Levels
 
-- 🟢 **Easy** (1-2 hours) - Single feature, minimal database, great for learning
-- 🟡 **Medium** (2-4 hours) - Multiple features, database, authentication
-- 🔴 **Hard** (4+ hours) - Complex features, multiple services, portfolio-worthy
+- **Easy** - Single feature, minimal database, great for learning
+- **Medium** - Multiple features, database, authentication
+- **Hard** - Complex features, multiple services, portfolio-worthy
 
 ## Example Flow
 
@@ -65,41 +65,40 @@ $ npx builder-club
 ✓ Vercel CLI (33.0.0)
 
 ? What type of project would you like to build?
-  📚 Academic Life
-❯ 💼 Career Development
-  🎯 Campus Life
+  Academic Life
+> Career Development
+  Campus Life
 
 ? Choose your difficulty level:
-❯ 🟢 Easy (1-2 hours)
-  🟡 Medium (2-4 hours)
-  🔴 Hard (4+ hours)
+> Easy
+  Medium
+  Hard
 
 ? Select your project:
-❯ Resume Roaster - Get AI feedback on your resume
+> Resume Roaster - Get AI feedback on your resume
   Cold Email Generator - Craft personalized outreach emails
 
 ? What would you like to name your project? my-resume-roaster
 
-📋 Project Summary:
+Project Summary:
   Project: Resume Roaster
-  Difficulty: 🟢 EASY
-  Time: 1-2 hours
+  Difficulty: EASY
   Folder: ./my-resume-roaster
 
-✨ Project created successfully!
+Project created successfully!
 
-📝 Next steps:
+Next steps:
   1. cd my-resume-roaster
   2. Read the MISSION.md file for full project details
   3. Add your API keys to .env.local
   4. Start building with Claude Code!
 
-💡 Initial Prompt (copied to clipboard):
+Initial Prompt (copied to clipboard):
 ────────────────────────────────────────────────────────────
 I want to build a Resume Roaster web app using Next.js 15...
 ────────────────────────────────────────────────────────────
 
-Happy building! 🚀
+Happy building!
 ```
 
 ## After Running
@@ -218,18 +217,18 @@ All projects use:
 
 Each project brief should include:
 
-- ✅ Mission Brief (problem + solution)
-- ✅ User Stories
-- ✅ Tech Stack
-- ✅ Database Schema (if applicable)
-- ✅ Core Features (must-have + nice-to-have)
-- ✅ File Structure
-- ✅ **Initial Prompt for Claude Code** (most important!)
-- ✅ Development Steps
-- ✅ Testing Checklist
-- ✅ Extensions & Improvements
-- ✅ Common Issues & Solutions
-- ✅ Resources
+- Mission Brief (problem + solution)
+- User Stories
+- Tech Stack
+- Database Schema (if applicable)
+- Core Features (must-have + nice-to-have)
+- File Structure
+- **Initial Prompt for Claude Code** (most important!)
+- Development Steps
+- Testing Checklist
+- Extensions & Improvements
+- Common Issues & Solutions
+- Resources
 
 ## Development
 
@@ -260,6 +259,6 @@ MIT
 
 ---
 
-**Built for Claude Builder Club @ Oxford** 🎓
+**Built for Claude Builder Club @ Oxford**
 
-Happy building! 🚀
+Happy building!

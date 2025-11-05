@@ -27,7 +27,7 @@ Required sections:
 ```markdown
 # Project Name
 
-**Difficulty:** 🟢 Easy | **Time:** 1-2 hours | **Category:** Category Name
+**Difficulty:** Easy | **Category:** Category Name
 
 ## Mission Brief
 [Problem statement. What you're building. Why it matters.]
@@ -118,7 +118,6 @@ Edit `create-builder-club-project/src/projects.ts`:
   description: 'One-line description',     // Shows in selection menu
   difficulty: 'easy',                       // easy | medium | hard
   category: 'academic',                     // See categories below
-  timeEstimate: '1-2 hours',
   briefPath: './workshop-projects/easy/project-name.md',
   hasDatabase: false,                       // Requires Neon + Drizzle?
   hasPython: false,                         // Requires uv?
@@ -139,19 +138,19 @@ Edit `create-builder-club-project/src/projects.ts`:
 
 ### Difficulty Definitions
 
-**Easy (1-2 hours)**
+**Easy**
 - Single main feature
 - Minimal or no database
 - 1-2 API calls maximum
 - Suitable for beginners
 
-**Medium (2-4 hours)**
+**Medium**
 - 3-5 features
 - Database with 2-4 tables
 - Multiple integrations
 - Moderate complexity
 
-**Hard (4+ hours)**
+**Hard**
 - Complex feature set
 - Advanced patterns (RAG, embeddings)
 - Multiple services
@@ -275,7 +274,6 @@ create-builder-club-project/
   description: 'Track expenses by category with charts',
   difficulty: 'easy',
   category: 'finance',
-  timeEstimate: '1-2 hours',
   briefPath: './workshop-projects/easy/budget-tracker.md',
   hasDatabase: true,
   hasPython: false,
@@ -288,13 +286,13 @@ create-builder-club-project/
 
 ## Quick vs Workshop Projects
 
-**Quick Project** (5-45 minutes):
+**Quick Project**:
 - No database
 - No API keys (or public APIs only)
 - Single HTML file or minimal Next.js
 - localStorage acceptable
 
-**Workshop Project** (1-4+ hours):
+**Workshop Project**:
 - May need database
 - May require API keys
 - Full Next.js structure

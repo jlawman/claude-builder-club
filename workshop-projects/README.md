@@ -59,7 +59,7 @@ src/
 
 **Want to build something NOW without any API keys or setup?**
 
-Check out **[Quick Start Projects](./quick/README.md)** - 40+ projects you can build in 5-30 minutes:
+Check out **[Quick Start Projects](./quick/README.md)** - 40+ quick projects:
 - **No API keys** - Use public endpoints or pure client-side
 - **No databases** - localStorage or stateless
 - **No accounts** - Start building immediately
@@ -176,21 +176,21 @@ These projects involve databases, APIs, and complete full-stack features. Great 
 
 ## Difficulty Levels Explained
 
-### Easy (1-2 hours)
+### Easy
 - Minimal database requirements (or no DB)
 - 1-2 API integrations
 - Basic CRUD operations
 - Great for learning the tech stack
 - Focus on UI and single feature
 
-### Medium (2-4 hours)
+### Medium
 - Database with 2-4 tables
 - Multiple API integrations
 - User authentication recommended
 - 3-5 core features
 - Some data processing/analysis
 
-### Hard (4+ hours)
+### Hard
 - Complex database schema
 - Multiple external services
 - Advanced features (file upload, real-time updates, etc.)
@@ -301,17 +301,17 @@ source .venv/bin/activate  # Unix
 
 ## Workshop Format Suggestions
 
-### Option 1: Guided Build (90 min)
+### Option 1: Guided Build
 - Everyone builds the same EASY project together
 - Instructor demos, students follow along
 - Great for learning the stack
 
-### Option 2: Choose Your Own Adventure (2-3 hours)
+### Option 2: Choose Your Own Adventure
 - Students pick any project at their skill level
 - Work independently or in pairs
 - Show & tell at the end
 
-### Option 3: Hackathon Style (4+ hours)
+### Option 3: Hackathon Style
 - Teams pick MEDIUM or HARD projects
 - Optional: Add your own twist
 - Judged demos with prizes

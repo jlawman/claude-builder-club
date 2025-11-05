@@ -5,8 +5,8 @@ Workshop materials for building AI-powered applications with Claude Code.
 ## Contents
 
 1. **`workshop-projects/`** - Project briefs by difficulty
-   - Quick projects (5-30 min, zero setup)
-   - Full-stack projects (1-4 hours)
+   - Quick projects (zero setup)
+   - Full-stack projects
    - 100+ copy-paste prompts
 
 2. **`create-builder-club-project/`** - CLI tool for project scaffolding
@@ -42,26 +42,26 @@ Optional:
 
 ## Project Types
 
-### Quick Projects (5-30 min)
+### Quick Projects
 Zero API keys, zero database, zero setup.
 - Client-side apps: timers, calculators, games
 - Public APIs: Pokemon, trivia, weather
 - Browser APIs: voice notes, image filters
 - [100 prompts →](workshop-projects/quick/QUICK-PROMPTS.md)
 
-### Easy (1-2 hours)
+### Easy
 Single feature, minimal database.
 - Study guide generator
 - Resume feedback tool
 - Meme generator
 - Date planner
 
-### Medium (2-4 hours)
+### Medium
 Multiple features, database required.
 - Scholarship finder
 - GitHub portfolio builder
 
-### Hard (4+ hours)
+### Hard
 Advanced features, portfolio quality.
 - Smart study buddy (RAG)
 - Research paper assistant
@@ -104,17 +104,17 @@ Colocate files with their usage. Page-specific components go in that page's fold
 
 ## Workshop Formats
 
-### Quick (90 min)
+### Quick
 1. Same EASY project for all
 2. Build together
 3. Deploy to Vercel
 
-### Self-Paced (2-3 hours)
+### Self-Paced
 1. Choose any project
 2. Build independently
 3. Show results
 
-### Hackathon (4+ hours)
+### Hackathon
 1. Teams
 2. MEDIUM or HARD projects
 3. Present work
