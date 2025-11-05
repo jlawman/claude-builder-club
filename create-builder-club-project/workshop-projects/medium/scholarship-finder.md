@@ -1,6 +1,6 @@
 # Scholarship Finder Bot
 
-**Difficulty:** 🟡 Medium | **Time:** 2-4 hours | **Category:** Personal Finance
+**Difficulty:** Medium | **Category:** Personal Finance
 
 ## Mission Brief
 

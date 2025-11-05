@@ -1,6 +1,6 @@
 # Resume Roaster
 
-**Difficulty:** 🟢 Easy | **Time:** 1-2 hours | **Category:** Career Development
+**Difficulty:** Easy | **Category:** Career Development
 
 ## Mission Brief
 

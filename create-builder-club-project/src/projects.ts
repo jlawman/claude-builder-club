@@ -4,7 +4,6 @@ export interface Project {
   description: string;
   difficulty: 'easy' | 'medium' | 'hard';
   category: string;
-  timeEstimate: string;
   briefPath: string;
   hasDatabase: boolean;
   hasPython: boolean;
@@ -28,7 +27,6 @@ export const projects: Project[] = [
     description: 'Upload notes, generate flashcards and quizzes',
     difficulty: 'easy',
     category: 'academic',
-    timeEstimate: '1-2 hours',
     briefPath: './workshop-projects/easy/study-guide-generator.md',
     hasDatabase: false,
     hasPython: false,
@@ -39,7 +37,6 @@ export const projects: Project[] = [
     description: 'Get AI feedback on your resume',
     difficulty: 'easy',
     category: 'career',
-    timeEstimate: '1-2 hours',
     briefPath: './workshop-projects/easy/resume-roaster.md',
     hasDatabase: false,
     hasPython: false,
@@ -50,7 +47,6 @@ export const projects: Project[] = [
     description: 'AI-powered meme creation from trending topics',
     difficulty: 'easy',
     category: 'creative',
-    timeEstimate: '1-2 hours',
     briefPath: './workshop-projects/easy/meme-generator.md',
     hasDatabase: false,
     hasPython: false,
@@ -61,7 +57,6 @@ export const projects: Project[] = [
     description: 'Perfect date planning assistant',
     difficulty: 'easy',
     category: 'creative',
-    timeEstimate: '1-2 hours',
     briefPath: './workshop-projects/easy/date-idea-generator.md',
     hasDatabase: false,
     hasPython: false,
@@ -74,7 +69,6 @@ export const projects: Project[] = [
     description: 'Auto-discover scholarship opportunities',
     difficulty: 'medium',
     category: 'finance',
-    timeEstimate: '2-4 hours',
     briefPath: './workshop-projects/medium/scholarship-finder.md',
     hasDatabase: true,
     hasPython: false,
@@ -85,7 +79,6 @@ export const projects: Project[] = [
     description: 'Auto-generate portfolio site from your repos',
     difficulty: 'medium',
     category: 'career',
-    timeEstimate: '2-4 hours',
     briefPath: './workshop-projects/medium/github-portfolio.md',
     hasDatabase: true,
     hasPython: false,
@@ -98,7 +91,6 @@ export const projects: Project[] = [
     description: 'Search, summarize, and organize academic papers',
     difficulty: 'hard',
     category: 'academic',
-    timeEstimate: '4+ hours',
     briefPath: './workshop-projects/hard/research-paper-assistant.md',
     hasDatabase: true,
     hasPython: false,
@@ -109,7 +101,6 @@ export const projects: Project[] = [
     description: 'AI-powered study companion with document chat',
     difficulty: 'hard',
     category: 'academic',
-    timeEstimate: '4+ hours',
     briefPath: './workshop-projects/hard/smart-study-buddy.md',
     hasDatabase: true,
     hasPython: false,

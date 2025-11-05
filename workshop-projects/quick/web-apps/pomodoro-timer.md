@@ -1,6 +1,6 @@
 # Pomodoro Timer
 
-**Time:** ⚡⚡ 15-30 min | **Setup:** Zero | **APIs:** None
+**Setup:** Zero | **APIs:** None
 
 ## Mission Brief
 
@@ -377,7 +377,5 @@ Copy this, save as `pomodoro.html`, and open in browser!
 **Bonus:** Add notifications and custom durations!
 
 ---
-
-**Build time: 15-30 minutes** ⚡⚡
 
 Start with the initial prompt and let Claude Code build it for you!

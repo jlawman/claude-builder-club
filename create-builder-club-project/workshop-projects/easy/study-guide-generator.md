@@ -1,6 +1,6 @@
 # Study Guide Generator
 
-**Difficulty:** 🟢 Easy | **Time:** 1-2 hours | **Category:** Academic Life
+**Difficulty:** Easy | **Category:** Academic Life
 
 ## Mission Brief
 

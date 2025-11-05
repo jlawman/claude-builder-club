@@ -1,6 +1,6 @@
 # Research Paper Assistant
 
-**Difficulty:** 🔴 Hard | **Time:** 4+ hours | **Category:** Academic Life
+**Difficulty:** Hard | **Category:** Academic Life
 
 ## Mission Brief
 

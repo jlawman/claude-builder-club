@@ -1,6 +1,6 @@
 # Color Palette Generator
 
-**Time:** ⚡ 15-20 min | **Setup:** Zero | **APIs:** None
+**Setup:** Zero | **APIs:** None
 
 ## Mission Brief
 
@@ -472,7 +472,5 @@ function getContrastColor(hexColor) {
 **Bonus:** Add image color extraction!
 
 ---
-
-**Build time: 15-20 minutes** ⚡
 
 Perfect quick project for learning color manipulation!

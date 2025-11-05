@@ -1,6 +1,6 @@
 # Pokemon Info Lookup
 
-**Time:** ⚡⚡ 20-30 min | **Setup:** Zero | **API:** PokeAPI (no auth)
+**Setup:** Zero | **API:** PokeAPI (no auth)
 
 ## Mission Brief
 
@@ -493,7 +493,5 @@ function getTypeBadge(type) {
 **Bonus:** Add random Pokemon and favorites!
 
 ---
-
-**Build time: 20-30 minutes** ⚡⚡
 
 Perfect for learning API fetching with zero setup!

@@ -1,6 +1,6 @@
 # GitHub Portfolio Builder
 
-**Difficulty:** 🟡 Medium | **Time:** 2-4 hours | **Category:** Career Development
+**Difficulty:** Medium | **Category:** Career Development
 
 ## Mission Brief
 

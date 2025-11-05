@@ -1,6 +1,6 @@
 # Date Idea Generator
 
-**Difficulty:** 🟢 Easy | **Time:** 1-2 hours | **Category:** Creative & Social
+**Difficulty:** Easy | **Category:** Creative & Social
 
 ## Mission Brief
 

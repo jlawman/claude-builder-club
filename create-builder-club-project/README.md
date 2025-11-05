@@ -205,7 +205,6 @@ All projects use:
      description: 'Brief description',
      difficulty: 'easy',
      category: 'academic',
-     timeEstimate: '1-2 hours',
      briefPath: '../workshop-projects/easy/your-project.md',
      hasDatabase: false,
      hasPython: false,
