@@ -55,15 +55,15 @@ src/
 
 ---
 
-## ⚡ NEW: Quick Start Projects (Zero Setup!)
+## Quick Start Projects (Zero Setup)
 
 **Want to build something NOW without any API keys or setup?**
 
 Check out **[Quick Start Projects](./quick/README.md)** - 40+ projects you can build in 5-30 minutes:
-- ✅ **No API keys** - Use public endpoints or pure client-side
-- ✅ **No databases** - localStorage or stateless
-- ✅ **No accounts** - Start building immediately
-- ✅ **Copy-paste prompts** - Ready to use with Claude Code
+- **No API keys** - Use public endpoints or pure client-side
+- **No databases** - localStorage or stateless
+- **No accounts** - Start building immediately
+- **Copy-paste prompts** - Ready to use with Claude Code
 
 **Popular Quick Projects:**
 - [Pomodoro Timer](./quick/web-apps/pomodoro-timer.md) - Focus timer with notifications
@@ -73,10 +73,10 @@ Check out **[Quick Start Projects](./quick/README.md)** - 40+ projects you can b
 - **[40 Copy-Paste Prompts](./quick/QUICK-PROMPTS.md)** - Just copy and build!
 
 Perfect for:
-- 🎓 Learning Claude Code quickly
-- 🚀 Portfolio fillers
-- 🎯 Testing new ideas
-- 🎮 Fun weekend projects
+- Learning Claude Code quickly
+- Portfolio fillers
+- Testing new ideas
+- Fun weekend projects
 
 ---
 
@@ -84,7 +84,7 @@ Perfect for:
 
 These projects involve databases, APIs, and complete full-stack features. Great for learning production development patterns!
 
-### 📚 Academic Life
+### Academic Life
 
 #### Easy
 - **[Study Guide Generator](./easy/study-guide-generator.md)** - Upload notes, generate flashcards and quizzes
@@ -99,7 +99,7 @@ These projects involve databases, APIs, and complete full-stack features. Great 
 - **[Smart Study Buddy](./hard/smart-study-buddy.md)** - AI-powered learning companion with document analysis
 - **[Lecture Transcription Analyzer](./hard/lecture-analyzer.md)** - Extract key points from lecture recordings
 
-### 💼 Career Development
+### Career Development
 
 #### Easy
 - **[Resume Roaster](./easy/resume-roaster.md)** - Get AI feedback on your resume
@@ -112,7 +112,7 @@ These projects involve databases, APIs, and complete full-stack features. Great 
 #### Hard
 - **[LinkedIn Optimizer Suite](./hard/linkedin-optimizer.md)** - Complete professional profile enhancement
 
-### 🎯 Campus Life
+### Campus Life
 
 #### Easy
 - **[Dining Hall Menu Tracker](./easy/dining-hall-menu.md)** - Find the best meals on campus
@@ -125,7 +125,7 @@ These projects involve databases, APIs, and complete full-stack features. Great 
 #### Hard
 - **[Campus Wrapped](./hard/campus-wrapped.md)** - Your semester in review with data visualization
 
-### 💰 Personal Finance
+### Personal Finance
 
 #### Easy
 - **[Simple Budget Tracker](./easy/budget-tracker.md)** - Track spending with SMS/email parsing
@@ -137,7 +137,7 @@ These projects involve databases, APIs, and complete full-stack features. Great 
 #### Hard
 - **[Financial Dashboard](./hard/financial-dashboard.md)** - Complete financial overview with predictions
 
-### 🎨 Creative & Social
+### Creative & Social
 
 #### Easy
 - **[Meme Generator](./easy/meme-generator.md)** - AI-powered meme creation from trending topics
@@ -151,7 +151,7 @@ These projects involve databases, APIs, and complete full-stack features. Great 
 #### Hard
 - **[Social Media Cleaner](./hard/social-media-cleaner.md)** - Professional brand audit
 
-### 🏋️ Health & Wellness
+### Health & Wellness
 
 #### Easy
 - **[Workout Routine Builder](./easy/workout-builder.md)** - Custom gym routines for campus facilities
@@ -160,7 +160,7 @@ These projects involve databases, APIs, and complete full-stack features. Great 
 - **[Meal Prep Planner](./medium/meal-prep-planner.md)** - Weekly meal planning with grocery lists
 - **[Mental Health Check-in](./medium/mental-health-checkin.md)** - Mood tracking and journaling
 
-### 🛠️ Productivity Tools
+### Productivity Tools
 
 #### Easy
 - **[Email Template Generator](./easy/email-templates.md)** - Common email scenarios covered
@@ -176,21 +176,21 @@ These projects involve databases, APIs, and complete full-stack features. Great 
 
 ## Difficulty Levels Explained
 
-### 🟢 Easy (1-2 hours)
+### Easy (1-2 hours)
 - Minimal database requirements (or no DB)
 - 1-2 API integrations
 - Basic CRUD operations
 - Great for learning the tech stack
 - Focus on UI and single feature
 
-### 🟡 Medium (2-4 hours)
+### Medium (2-4 hours)
 - Database with 2-4 tables
 - Multiple API integrations
 - User authentication recommended
 - 3-5 core features
 - Some data processing/analysis
 
-### 🔴 Hard (4+ hours)
+### Hard (4+ hours)
 - Complex database schema
 - Multiple external services
 - Advanced features (file upload, real-time updates, etc.)
@@ -376,7 +376,7 @@ Here are some great free APIs to use during the workshop:
 
 Once you've built your workshop project and want to take it to production or build more advanced apps, here are our recommended tools and services:
 
-### 🚀 Infrastructure & Deployment
+### Infrastructure & Deployment
 
 **Hosting & Deployment**
 - **Vercel** - Primary choice for Next.js apps (free tier is generous)
@@ -387,7 +387,7 @@ Once you've built your workshop project and want to take it to production or bui
 - **Cloudflare** - Buy and manage domain names (best pricing, great DDoS protection)
 - **Cloudflare Email Routing** - Free email forwarding for your domain (e.g., hello@yourdomain.com → your@gmail.com)
 
-### 🗄️ Storage & Databases
+### Storage & Databases
 
 **File Storage**
 - **Vercel Blob** - Simple file uploads (great for public files, images)
@@ -401,13 +401,13 @@ Once you've built your workshop project and want to take it to production or bui
 - **Upstash Redis** - Serverless Redis for caching, rate limiting, sessions (generous free tier)
 - **Upstash Kafka** - For event streaming if you need it
 
-### 📧 Communication
+### Communication
 
 **Email**
 - **Resend** - Modern email API (100 emails/day free, perfect for transactional emails)
 - Use for: Welcome emails, password resets, notifications, newsletters
 
-### 🤖 AI Models & LLMs
+### AI Models & LLMs
 
 **For Prototyping & Quick Ideas** (Fast + Cheap)
 - **Claude Haiku 4.5** (`claude-haiku-4-5`) - Fast, cheap, great for simple tasks
@@ -423,7 +423,7 @@ Once you've built your workshop project and want to take it to production or bui
 - Use **Google AI API** for Gemini models (generous free tier)
 - Mix and match based on task complexity and budget
 
-### 📊 Monitoring & Observability
+### Monitoring & Observability
 
 **Error Tracking**
 - **Sentry.io** - Catch and debug errors in production (free tier available)
@@ -440,7 +440,7 @@ Once you've built your workshop project and want to take it to production or bui
 - **Vercel Analytics** - Built-in if using Vercel
 - **Google Analytics** - Free, comprehensive
 
-### 🔐 Authentication & Security
+### Authentication & Security
 
 **Auth** (from workshop stack)
 - **Clerk** - Easy user authentication
@@ -449,7 +449,7 @@ Once you've built your workshop project and want to take it to production or bui
 - **Cloudflare** - DDoS protection, WAF, rate limiting (free tier)
 - Enable on your domain after deployment
 
-### 💰 Cost Optimization Tips
+### Cost Optimization Tips
 
 1. **Start with free tiers** - Most services have generous free tiers
 2. **Use Haiku/Flash for prototypes** - Switch to Pro models only when needed
@@ -457,7 +457,7 @@ Once you've built your workshop project and want to take it to production or bui
 4. **Cloudflare R2 over S3** - No egress fees saves money
 5. **Monitor with Langfuse** - Track LLM costs before they get expensive
 
-### 🏗️ Recommended Architecture for Production
+### Recommended Architecture for Production
 
 ```
 Frontend (Next.js 15)
@@ -489,7 +489,7 @@ Deployment
 └── Alternative: GCP Cloud Run (for custom needs)
 ```
 
-### 📚 Migration Path
+### Migration Path
 
 **Workshop → MVP → Production**
 
@@ -512,7 +512,7 @@ Deployment
    - Use production LLM models
    - Add monitoring & alerting
 
-### 🎓 Learning Resources
+### Learning Resources
 
 - **Vercel AI SDK 5**: https://sdk.vercel.ai/docs
 - **Drizzle ORM**: https://orm.drizzle.team
@@ -548,4 +548,4 @@ After the workshop:
 
 ---
 
-**Ready to build something awesome? Pick a project and let's go!** 🚀
+**Ready to build something awesome? Pick a project and let's go!**

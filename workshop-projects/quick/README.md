@@ -1,22 +1,22 @@
 # Quick Start Projects
 
-**Zero Setup • No API Keys • Build in Minutes**
+**Zero Setup - No API Keys - Build in Minutes**
 
 Perfect for getting started with Claude Code or when you want to build something fast without dealing with API keys, databases, or account setup.
 
 ## What Makes These "Quick"?
 
-✅ **No API keys required** - Use public endpoints or no backend at all
-✅ **No account signup** - Start building immediately
-✅ **No database setup** - Use localStorage, public APIs, or pure client-side
-✅ **Build in 15-30 minutes** - Simple, focused projects
-✅ **Perfect for learning** - Focus on code, not configuration
+- **No API keys required** - Use public endpoints or no backend at all
+- **No account signup** - Start building immediately
+- **No database setup** - Use localStorage, public APIs, or pure client-side
+- **Build quickly** - Simple, focused projects
+- **Perfect for learning** - Focus on code, not configuration
 
 ---
 
 ## Project Categories
 
-### 🌐 Client-Side Web Apps
+### Client-Side Web Apps
 Pure frontend, no backend needed. Everything runs in the browser.
 
 - **[Pomodoro Timer](./web-apps/pomodoro-timer.md)** - Focus timer with notifications
@@ -30,7 +30,7 @@ Pure frontend, no backend needed. Everything runs in the browser.
 - **[Typing Speed Test](./web-apps/typing-test.md)** - Test your WPM
 - **[Text Analyzer](./web-apps/text-analyzer.md)** - Word count, reading time, sentiment
 
-### 🎮 Fun & Games
+### Fun & Games
 Simple games and entertainment apps.
 
 - **[Trivia Quiz Game](./web-apps/trivia-quiz.md)** - Questions from Open Trivia DB (no auth)
@@ -40,7 +40,7 @@ Simple games and entertainment apps.
 - **[Memory Card Game](./web-apps/memory-game.md)** - Match pairs
 - **[Snake Game](./web-apps/snake-game.md)** - Classic snake
 
-### 🎨 Browser API Projects
+### Browser API Projects
 Use powerful browser APIs for creative projects.
 
 - **[Voice Notes App](./browser-apis/voice-notes.md)** - Speech-to-text notes
@@ -51,7 +51,7 @@ Use powerful browser APIs for creative projects.
 - **[Screenshot Tool](./browser-apis/screenshot-tool.md)** - Capture screen regions
 - **[Geolocation Weather](./browser-apis/geo-weather.md)** - Weather based on your location (public weather API)
 
-### 🐍 Python Scripts
+### Python Scripts
 Quick data analysis and automation scripts using public data.
 
 - **[Movie Dataset Analyzer](./python-scripts/movie-analysis.md)** - Analyze IMDB/public datasets
@@ -193,7 +193,7 @@ uv run python main.py
 </html>
 ```
 
-Save as `index.html` and open in browser. Done! 🎉
+Save as `index.html` and open in browser. Done!
 
 ---
 
@@ -210,21 +210,21 @@ Save as `index.html` and open in browser. Done! 🎉
 
 ## Project Difficulty
 
-**⚡ Ultra Quick (5-15 min)**
+**Ultra Quick**
 - Random quote display
 - Color palette generator
 - JSON formatter
 - Password generator
 - Unit converter
 
-**⚡⚡ Quick (15-30 min)**
+**Quick**
 - Pomodoro timer
 - Trivia quiz
 - Pokemon lookup
 - Habit tracker
 - Markdown preview
 
-**⚡⚡⚡ Still Pretty Quick (30-45 min)**
+**More Involved**
 - Typing speed test
 - Expense tracker with charts
 - Voice notes app
@@ -235,11 +235,11 @@ Save as `index.html` and open in browser. Done! 🎉
 
 ## Why Build Quick Projects?
 
-✅ **Learn Claude Code faster** - Focus on prompting, not setup
-✅ **Portfolio fillers** - Quick wins for your GitHub
-✅ **Practice new tech** - Try APIs/libraries without commitment
-✅ **Debugging practice** - Simpler projects = easier to debug
-✅ **Fun!** - Build something playable in minutes
+- **Learn Claude Code faster** - Focus on prompting, not setup
+- **Portfolio fillers** - Quick wins for your GitHub
+- **Practice new tech** - Try APIs/libraries without commitment
+- **Debugging practice** - Simpler projects = easier to debug
+- **Fun** - Build something playable quickly
 
 ---
 
@@ -254,4 +254,4 @@ Have an idea for a quick project? It should:
 
 ---
 
-**Ready to build something quick? Pick a project and get started!** ⚡
+**Ready to build something quick? Pick a project and get started!**
